@@ -34,6 +34,7 @@ for num, task in enumerate(tasks):
 
 driver.execute_script('''
     document.tasks = document.getElementsByClassName("task");
+    document.showall = false;
     document.answerEls = [];
     ''')
 
@@ -41,15 +42,17 @@ for i in range(len(answers)):
     ans = str(answers[i])
     driver.execute_script('''
     let ans = document.createElement("p")
-    
+
     ans.style.backgroundColor = "black"
     ans.onmouseenter = ()=>{
-        ans.style.backgroundColor = "white"
+        if(!document.showall)
+            ans.style.backgroundColor = "white"
     }
     ans.onmouseleave = ()=>{
-        ans.style.backgroundColor = "black"
+        if(!document.showall)
+            ans.style.backgroundColor = "black"
     }
-    
+
     document.tasks[''' + str(i) + '''].appendChild(ans)
     ans.innerHTML =  "Answer: ''' + str(ans) + '''"
     document.answerEls.push(ans)
@@ -66,10 +69,11 @@ driver.execute_script('''
     btn.style.height = "5%"
     btn.style.backgroundColor = "#ff957c"
     btn.onclick = ()=>{
+        document.showall = !document.showall;
         document.answerEls.forEach((el)=>{
             if(el.style.backgroundColor != "white")
                 el.style.backgroundColor = "white"
-            else 
+            else
                 el.style.backgroundColor = "black"
         })
     }
