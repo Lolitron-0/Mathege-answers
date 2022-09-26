@@ -1,0 +1,6 @@
+requests
+bs4
+lxml
+selenium
+sdamgia-api
+webdriver_manager
