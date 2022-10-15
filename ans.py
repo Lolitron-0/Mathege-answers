@@ -65,6 +65,7 @@ driver.execute_script('''
     document.getElementsByTagName("body")[0].appendChild(btn)
     btn.innerHTML = "SHOW/HIDE ALL"
     btn.style.position = "fixed"
+    btn.left = "30%"
     btn.style.width = "10%"
     btn.style.height = "5%"
     btn.style.backgroundColor = "#ff957c"
