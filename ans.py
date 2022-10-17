@@ -14,6 +14,7 @@ def runScript(file, driver):
 
 if __name__ == "__main__":
     url = input("Enter the URL: ")
+    print("Please wait...")
     if DEV_MODE:
         url = "https://prof.mathege.ru/prototypes/?position=11&filter=&limit=1000"
 
@@ -28,17 +29,20 @@ if __name__ == "__main__":
     tasks = soup.find_all('div', class_='titleTask')
     answers = []
     for num, task in enumerate(tasks):
-        t = [i for i in task.p.strings][0][2:-1]
-        z = sdamgia.get_problem_by_id('math', t)
         try:
-            answers.append(z['answer'])
+            t = [i for i in task.p.strings][0][2:-1]
+            z = sdamgia.get_problem_by_id('math', t)
+            try:
+                answers.append(z['answer'])
+            except:
+                answers.append('')
+
+            print("Parsing tasks: " + str(num) + " of " + str(len(tasks)) + " done...")
+
+            if DEV_MODE:
+                break
         except:
-            answers.append('')
-
-        print("Parsing tasks: " + str(num) + " of " + str(len(tasks)) + " done...")
-
-        if DEV_MODE:
-            break
+            print("Failed, moving on...")
 
     driver.execute_script('''
         document.tasks = document.getElementsByClassName("task");

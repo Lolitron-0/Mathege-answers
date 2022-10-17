@@ -5,12 +5,12 @@ function updateCurrentTask() {
 	}
 	document.tasks[document.currentTask].style.backgroundColor = "#adffb2";
 	document.tasks[Math.max(document.currentTask - 1, 0)].scrollIntoView({
-        block: "center",
 		behavior: "smooth",
 	});
 }
 
 document.currentTask = 0;
+updateCurrentTask();
 window.onkeydown = (e) => {
 	if (e.key == "Enter") {
 		document.currentTask += 1;
