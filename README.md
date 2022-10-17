@@ -7,3 +7,5 @@
 Ответы получены с помощью [SdamGIA Api](https://github.com/anijackich/sdamgia-api).
 
 ![Безымянный](https://user-images.githubusercontent.com/67783125/196046875-ec7aa746-c9a5-47c1-8a32-a4f5654f4583.png)
+
+Чтобы перейти к следущему заданию нажмите Shift
