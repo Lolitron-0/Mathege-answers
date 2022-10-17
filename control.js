@@ -12,7 +12,7 @@ function updateCurrentTask() {
 document.currentTask = 0;
 updateCurrentTask();
 window.onkeydown = (e) => {
-	if (e.key == "Enter") {
+	if (e.key == "Shift") {
 		document.currentTask += 1;
 		updateCurrentTask();
 	}

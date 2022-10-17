@@ -24,8 +24,7 @@ if __name__ == "__main__":
 
     sdamgia = SdamGIA()
 
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'lxml')
+    soup = BeautifulSoup(driver.page_source, 'lxml')
     tasks = soup.find_all('div', class_='titleTask')
     answers = []
     for num, task in enumerate(tasks):
