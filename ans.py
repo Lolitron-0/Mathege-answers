@@ -1,26 +1,33 @@
-import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from sdamgia import SdamGIA
 from selenium.webdriver.edge.service import Service
 from webdriver_manager import microsoft
 
+import menu
+from color import *
+
 DEV_MODE = False
+
 
 def runScript(file, driver):
     with open(file) as f:
         script = f.read()
         driver.execute_script(script)
 
+
+
 if __name__ == "__main__":
-    url = input("Enter the URL: ")
-    print("Please wait...")
+    url = menu.getUrlChoice()
+    print('Please wait.......')
+
     if DEV_MODE:
         url = "https://prof.mathege.ru/prototypes/?position=11&filter=&limit=1000"
 
     driver = webdriver.Edge(service=Service(microsoft.EdgeChromiumDriverManager().install()))
     # driver = webdriver.Edge(service=Service(executable_path="driver/msedgedriver.exe"))
     driver.get(url=url)
+    driver.minimize_window()
 
     sdamgia = SdamGIA()
 
@@ -36,7 +43,7 @@ if __name__ == "__main__":
             except:
                 answers.append('')
 
-            print("Parsing tasks: " + str(num) + " of " + str(len(tasks)) + " done...")
+            print(Fore.GREEN + "Parsing tasks: " + str(num) + " of " + str(len(tasks)) + " done..." + Style.RESETALL)
 
             if DEV_MODE:
                 break
